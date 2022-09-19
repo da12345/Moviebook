@@ -1,0 +1,58 @@
+@startuml
+class Movie {
+- String title
+- String movieId
+}
+
+class Review {
+- String comment
+- int rating
+- int reviewId
+}
+
+class MovieLibrary {
+- boolean isSortedIncreasing
+
++ void addMovie(Movie)
++ void deleteMovieByIndex(int
++ void deleteMovieByTitle(String)
++ void deleteMovieByID(String)
++ void addReviewById(String, Review)
++ int getMoviesSize()
++ List<String> getMovieTitles()
++ MovieLibrary getSorted(MovieLibrary)
++ Movie getMovieByIndex(int)
++ void clear()
+}
+
+enum MovieLibrary.SortType {
+ TITLE
+ RATING
+}
+
+class MovieLibrary.SortRating {
++ compare(Object, Object)
+}
+
+MovieLibrary --> "movies: *" Movie
+Movie --> "review: 1" Review
+MovieLibrary +- MovieLibrary.SortRating
+MovieLibrary +- MovieLibrary.SortType
+
+
+class MovieSearch {
+- static final String KEY
+- TmdbApi api
+
++ List<MovieDb> searchResult(String)
++ int getMovieId(MovieDb)
++ MovieDb getMovieById(int movieId)
+}
+
+class MovieInformation {
+- String movieImagePath
+- String movieTitle
+- String movieRelease
+- String movieGenres
+}
+@enduml

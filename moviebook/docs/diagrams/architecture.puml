@@ -1,0 +1,43 @@
+@startuml
+allowmixing
+component core {
+ package core
+}
+
+component jackson {
+}
+
+component themoviedbapi {
+}
+
+component ui as moviebook.ui {
+ package ui
+}
+
+
+component persistence as moviebook.persistence {
+ package persistence
+}
+
+component javafx {
+}
+
+component fxml {
+}
+
+component restapi {
+ package restapi
+}
+
+
+core ..> themoviedbapi
+persistence ..> jackson
+ui ..> .core
+ui ..> .persistence
+ui ..> .restapi
+restapi ..> .core
+restapi ..> .persistence
+
+moviebook.ui ..> javafx
+moviebook.ui ..> fxml
+@enduml

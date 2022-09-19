@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: sdk use java 16.0.1.hs-adpt
+    command: cd moviebook; mvn clean install; mvn spring-boot:run -f restapi/pom.xml
+    name: REST server
+  - openMode: split-right
+    command: cd moviebook
+    name: User terminal
+
+ports:
+  # used by virtual desktop and vnc, supports JavaFX
+  - port: 6080

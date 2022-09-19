@@ -1,0 +1,17 @@
+{
+  "type": "java",
+  "name": "Launch moviebook",
+  "request": "launch",
+  "mainClass": "moviebook.ui/moviebook.ui.App",
+  "vmArgs": "--add-opens moviebook.ui/moviebook.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED",
+  "projectName": "fxui",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch App",
+      "request": "launch",
+      "mainClass": "moviebook.ui/ui.App",
+      "projectName": "ui"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+@startuml
+abstract class AbstractAppController extends LocalAppController
+abstract class AbstractAppController extends RestAppController
+
+abstract class Application { }
+
+class App extends Application
+
+class LibraryLocalDataAccess { }
+class LibraryRemoteDataAccess { }
+
+interface LibraryDataAccess implements LibraryLocalDataAccess
+interface LibraryDataAccess implements LibraryRemoteDataAccess
+
+AbstractAppController --> "dataAccess: 1" LibraryDataAccess
+@enduml

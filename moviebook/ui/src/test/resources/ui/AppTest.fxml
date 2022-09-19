@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LocalAppController">
+   <!-- To use local storage, change fx:controller="ui.LocalAppController" -->
+   <!-- To use remote storage, change fx:controller="ui.RestAppController" -->
+   <children>
+      <GridPane fx:id="mainGrid" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="395.0" prefWidth="780.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="320.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="460.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="590.0" prefWidth="320.0">
+               <children>
+                  <Label fx:id="errorMessage" layoutX="63.0" layoutY="398.0" prefHeight="17.0" prefWidth="227.0" text="" />
+                  <ListView fx:id="listView" layoutX="53.0" layoutY="146.0" onMouseClicked="#onClickListView" prefHeight="197.0" prefWidth="200.0" />
+                  <Label layoutX="53.0" layoutY="89.0" text="Your Movies">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="sortLabel" layoutX="140.0" layoutY="350.0" text="Sort by:" />
+                  <Button fx:id="sortButtonAlpha" layoutX="140.0" layoutY="371.0" maxHeight="10" mnemonicParsing="false" onAction="#handleTitleSort" text="A-Z" />
+                  <Button fx:id="sortButtonNum" layoutX="190.0" layoutY="371.0" maxHeight="10" mnemonicParsing="false" onAction="#handleRatingSort" text="1-10" />
+                  <Button fx:id="newMovieButton" layoutX="53.0" layoutY="371.0" mnemonicParsing="false" onAction="#onClickNewMovie" text="New Movie" />
+               </children>
+            </Pane>
+            <Pane fx:id="addMoviePane" prefHeight="501.0" prefWidth="631.0" GridPane.columnIndex="1">
+               <children>
+                  <Label layoutX="14.0" layoutY="88.0" text="Search New Movie">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="125.0" text="Movie Name:" />
+                  <TextField fx:id="inputName" layoutX="10.0" layoutY="146.0" onKeyReleased="#updateSearchBox" prefHeight="25.0" prefWidth="191.0" />
+                  <Label layoutX="14.0" layoutY="187.0" text="Search Results:" />
+                  <ListView fx:id="searchBox" layoutX="10.0" layoutY="209.0" onMouseClicked="#selectSearchResult" prefHeight="134.0" prefWidth="191.0" />
+                  <Label fx:id="searchBoxErrorText" layoutX="10.0" layoutY="347.0" prefHeight="41.0" prefWidth="191.0" wrapText="true" />
+                  <Button fx:id="addMovieButton" layoutX="271.0" layoutY="284.0" mnemonicParsing="false" onAction="#onClickAddMovie" text="Add Movie" textFill="WHITE" />
+                  <Text layoutX="272.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Database ID:" wrappingWidth="78.55078125" />
+                  <TextField fx:id="inputMovieId" layoutX="270.0" layoutY="242.0" opacity="0.5" style="-fx-background-color: #888;" />
+               </children>
+            </Pane>
+            <Pane fx:id="movieInfoPane" GridPane.columnIndex="2">
+               <children>
+                  <Pane layoutX="14.0" layoutY="48.0">
+                     <children>
+                        <ImageView fx:id="moviePoster" fitHeight="400.0" fitWidth="300.0" layoutX="-47.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="movieTitle" alignment="TOP_LEFT" layoutX="287.0" layoutY="73.0" prefHeight="54.0" prefWidth="332.0" text="Title" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="movieGenres" alignment="TOP_LEFT" layoutX="289.0" layoutY="152.0" prefHeight="41.0" prefWidth="252.0" text="Genres" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="movieReleaseDate" layoutX="289.0" layoutY="127.0" prefHeight="25.0" prefWidth="227.0" text="Release date" wrapText="true" />
+                  <Text layoutX="286.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your rating:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inputRating" alignment="CENTER" layoutX="287.0" layoutY="215.0" prefHeight="39.0" prefWidth="86.0" promptText="Rating">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="labelRating" contentDisplay="CENTER" layoutX="287.0" layoutY="215.0" prefHeight="41.0" prefWidth="117.0" text="N/A">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="286.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your comment:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inputComment" alignment="TOP_LEFT" layoutX="287.0" layoutY="288.0" prefHeight="54.0" prefWidth="227.0" promptText="Your comment" />
+                  <Label fx:id="labelComment" alignment="TOP_LEFT" layoutX="291.0" layoutY="295.0" prefHeight="74.0" prefWidth="227.0" text="No review added." wrapText="true" />
+                  <Button fx:id="editReviewButton" layoutX="287.0" layoutY="371.0" maxHeight="10" mnemonicParsing="false" onAction="#handleEditReview" text="Edit review" textFill="WHITE" />
+                  <Button fx:id="deleteMovieButton" layoutX="287.0" layoutY="403.0" maxHeight="10" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete movie" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
